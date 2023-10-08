@@ -1,0 +1,15 @@
+# Watcom Makefile for HE - DOS
+#
+# Usage: wmake -f [path\]Makefile.wcc
+
+#DEBUG=Y
+
+!include $(%PDCURSES_SRCDIR)/dos/makefile.wcc
+
+all : he.exe
+
+main.obj : src/main.c
+	$(CC) $(CFLAGS) $<
+
+he.exe : main.obj $(LIBCURSES)
+	$(LINK) $(LDFLAGS) n $@ f main.obj l $(LIBCURSES)
